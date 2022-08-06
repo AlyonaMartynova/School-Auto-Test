@@ -1,13 +1,13 @@
 import { setToken } from "./utils/auth"
-import { makeText } from "./pr_variables.js";
+import { makeText } from "./utils/func";
 
 describe('create', () => {
 
     beforeEach(setToken);
 
-    it ('TC-92-94', () => {
+    it('TC-92-94', () => {
         cy.get("a[href*='/admin/dashboard']")
-            .click()       
+            .click()
         cy.get("img[src*='project-icon']")
             .click()
         cy.get('form')
@@ -15,13 +15,13 @@ describe('create', () => {
         cy.get("a[href='/projects']")
             .click()
         cy.get("button[ng-reflect-router-link='new']")
-            .should('be.visible') 
+            .should('be.visible')
             .click()
         cy.get('form')
             .should('have.class', 'project-info')
     });
 
-    it ('TC-158', () => {    
+    it('TC-158', () => {
         cy.get("input[formcontrolname='name']")
             .should('have.class', 'ng-untouched')
             .click()
@@ -30,18 +30,18 @@ describe('create', () => {
         cy.get("input[formcontrolname='name']")
             .should('have.class', 'ng-invalid')
         cy.get("button[type='submit']")
-            .should('have.disabled')                                              
+            .should('have.disabled')
     });
 
-    it ('TC-159', () => {
+    it('TC-159', () => {
         cy.get("input[formcontrolname='name']")
-            .type( makeText(10) )
-            .should('have.class', 'ng-valid')                                                                                
+            .type(makeText(10))
+            .should('have.class', 'ng-valid')
         cy.get("button[type='submit']")
-            .should('have.disabled')                                              
+            .should('have.disabled')
     });
 
-    it ('TC-165', () => {    
+    it('TC-165', () => {
         cy.get("mat-select[formcontrolname='departmentId']")
             .should('have.class', 'ng-untouched')
             .click()
@@ -50,70 +50,70 @@ describe('create', () => {
         cy.get("mat-select[formcontrolname='departmentId']")
             .should('have.class', 'ng-invalid')
         cy.get("button[type='submit']")
-            .should('have.disabled')                                              
+            .should('have.disabled')
     });
 
-    it ('TC-166-167', () => {    
+    it('TC-166-167', () => {
         cy.get("mat-select[formcontrolname='departmentId']")
             .click()
         cy.contains('Frontend')
-            .scrollIntoView({duration: 500})
+            .scrollIntoView()
             .click()
         cy.get("mat-select[formcontrolname='departmentId']")
             .should('have.class', 'ng-valid')
         cy.get("button[type='submit']")
-            .should('have.enabled')                                               
+            .should('have.enabled')
     });
 
-    it ('TC-188-192', () => {
+    it('TC-188-192', () => {
         cy.get("mat-select[formcontrolname='status']")
             .should('have.class', 'ng-valid')
             .should('contain', 'Активный')
             .click()
         cy.get("div[role='listbox']")
-            .should('contain','Приостановлен')
-            .should('contain','Завершен')
-            .should('contain','Активный')
+            .should('contain', 'Приостановлен')
+            .should('contain', 'Завершен')
+            .should('contain', 'Активный')
         cy.get("mat-option[ng-reflect-value='Active']")
             .click()
     });
 
-    it ('TC-194', () => {
+    it('TC-194', () => {
         cy.get("input[formcontrolname='shortDescription']")
             .should('have.attr', 'maxlength')
-            .and('equal', '100')                                           // spec value = 300
+            .and('equal', '100')
         cy.get("input[formcontrolname='shortDescription']")
-            .type( makeText(100) )
+            .type(makeText(100))
     });
 
-    it ('TC-200-205-209', () => {    
+    it('TC-200-205-209', () => {
         cy.get("textarea[formcontrolname='description']")
             .should('have.attr', 'maxlength')
-            .and('equal', '300')                                           // spec value = unlimited
+            .and('equal', '300')
         cy.get("textarea[formcontrolname='description']")
-            .type( makeText(300) )
+            .type(makeText(300))
     });
 
-// team -------------------------------------------------
+    // team -------------------------------------------------
 
-    it ('TC-222', () => {
+    it('TC-222', () => {
         cy.get("Button[color='accent']")
             .click()
         cy.get("div[class='mat-dialog-actions'] > button:last-child")
-            .should('have.disabled')                                        
+            .should('have.disabled')
         cy.get('.mat-dialog-content')
-            .scrollTo(0, 500, {duration: 500})
+            .scrollTo(0, 500,)
         cy.get('.mat-dialog-content')
-            .scrollTo(0, 500, {duration: 500})
+            .scrollTo(0, 500,)
         cy.contains('Admin New Admin')
-            .scrollIntoView({duration: 500})
+            .scrollIntoView()
             .click()
         cy.get("div[class='mat-dialog-actions'] > button:last-child")
             .should('have.enabled')
-            .click()                                                    
+            .click()
     });
 
-    it ('TC-xxx', () => {    
+    it('TC-xxx', () => {
         cy.get("Button[color='accent']")
             .click()
         cy.get("input[type='search']")
@@ -123,14 +123,14 @@ describe('create', () => {
         cy.get("div[class='mat-dialog-actions'] > button:last-child")
             .should('have.disabled')
         cy.get('.mat-dialog-content')
-            .should('contain.text','Неадмин')                               
+            .should('contain.text', 'Неадмин')
             .click()
         cy.get("div[class='mat-dialog-actions'] > button:last-child")
             .should('have.enabled')
             .click()
-     
-         cy.get("button[type='submit']")                                    
-            .should('have.enabled')        
-            .click()           
+
+        cy.get("button[type='submit']")
+            .should('have.enabled')
+            .click()
     });
 });
