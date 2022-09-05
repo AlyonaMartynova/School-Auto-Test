@@ -2,12 +2,12 @@ let token
 
 let user = {
     olaf: "olaf6642",
-    boy: "JustaBoy55",
+    boy: "JustaBoy",
     // you can add more users
 };
 let pass = {
-    olaf: "hs$L7Cx!",
-    boy: "NF1MElFuGa$",
+    olaf: "5SBbbg*m*",
+    boy: "U1iVMjyk*x",
     // and their passwords
 };
 
