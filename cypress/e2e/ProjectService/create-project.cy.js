@@ -1,7 +1,11 @@
-import { setToken } from "../utils/auth"
+import { user, pass, login, setToken } from "../utils/auth"
 import { makeText } from "../utils/func";
 
-describe('create', () => {
+it("Start", () => {
+    login(user.olaf, pass.olaf)
+});
+
+describe('create project', () => {
 
     beforeEach(setToken);
 

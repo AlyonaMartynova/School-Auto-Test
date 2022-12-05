@@ -41,7 +41,7 @@ describe("edit user", () => {
       .type(makeRuName(12))
       .should('have.class', 'ng-valid')
     cy.get('div[class*="info__buttons"] button')
-      .eq(0)                                        // chosing FIRST element from ARRAY
+      .eq(0)                                        // choosing FIRST element from ARRAY
       .click()
 
     cy.get('mat-dialog-container')
